@@ -18,5 +18,21 @@ export const coursesRoutes: Routes = [
     resolve: {
       course: courseResolver
     }
+  },
+  {
+    path: ':courseUrl',
+    loadComponent: () => import('./course/course.component').then(m => m.CourseComponent),
+    resolve: {
+      course: courseResolver
+    },
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./lessons-list/lessons-list.component').then(m => m.LessonsListComponent),
+        resolve: {
+          lessons: lessonsResolver
+        }
+      }
+    ]
   }
 ];

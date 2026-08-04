@@ -1,26 +1,26 @@
 <div class="courses-grid">
-    @for (course of courses(); track course.id) {
-        <article class="course-card">
-            <a class="card-image-link">
-                <img class="card-image" [src]="course.iconUrl" [alt]="course.description">
-                <span class="card-category" [class.advanced]="course.category === 'ADVANCED'">
+  @for (course of courses(); track course.id) {
+    <article class="course-card">
+      <a class="card-image-link">
+        <img class="card-image" [src]="course.iconUrl" [alt]="course.description">
+        <span class="card-category" [class.advanced]="course.category === 'ADVANCED'">
                     {{ course.category === 'ADVANCED' ? 'Advanced' : 'Beginner' }}
                 </span>
-            </a>
-            <div class="card-body">
-                <h3 class="card-title">{{ course.description }}</h3>
-                <p class="card-description">{{ course.longDescription }}</p>
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-primary btn-sm">
-                    <span class="material-icons">play_arrow</span>
-                    View Course
-                </a>
-                <a class="btn btn-ghost btn-sm" [routerLink]="['/courses/edit-course', course.url]">
-                    <span class="material-icons">edit</span>
-                    Edit
-                </a>
-            </div>
-        </article>
-    }
+      </a>
+      <div class="card-body">
+        <h3 class="card-title">{{ course.description }}</h3>
+        <p class="card-description">{{ course.longDescription }}</p>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-primary btn-sm" [routerLink]="[course.url]">
+          <span class="material-icons">play_arrow</span>
+          View Course
+        </a>
+        <a class="btn btn-ghost btn-sm" [routerLink]="['/courses/edit-course', course.url]">
+          <span class="material-icons">edit</span>
+          Edit
+        </a>
+      </div>
+    </article>
+  }
 </div>
