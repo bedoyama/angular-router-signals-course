@@ -11,13 +11,16 @@ import {DevToolbarComponent} from './shared/dev-toolbar/dev-toolbar.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    imports: [
-        MessagesComponent,
-        LoadingComponent,
-        ConfirmDialogComponent,
-        NgLogoComponent,
-        DevToolbarComponent,
-    ],
+  imports: [
+    MessagesComponent,
+    LoadingComponent,
+    ConfirmDialogComponent,
+    NgLogoComponent,
+    DevToolbarComponent,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+  ],
 })
 export class AppComponent {
     readonly auth = inject(AuthService);

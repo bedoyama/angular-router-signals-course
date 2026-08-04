@@ -5,5 +5,7 @@ import {firstValueFrom} from 'rxjs';
 import {Course} from '../model/course';
 
 export const courseResolver: ResolveFn<Course> = async (route) => {
-    return null!;
+  const courseUrl = route.paramMap.get('courseUrl');
+  const http = inject(HttpClient);
+  return firstValueFrom(http.get<Course>(`/api/courses/${courseUrl}`));
 };

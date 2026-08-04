@@ -8,20 +8,22 @@
 
         <ul class="nav-links">
             <li>
-                <a class="nav-link">
+                <a class="nav-link" routerLink="/">
                     <span class="material-icons">grid_view</span>
                     Courses
                 </a>
             </li>
             <li>
-                <a class="nav-link">
+                <a class="nav-link" routerLink="/about"
+                routerLinkActive="active">
                     <span class="material-icons">info</span>
                     About
                 </a>
             </li>
             @if (auth.isLoggedOut()) {
                 <li>
-                    <a class="nav-link">
+                    <a class="nav-link" routerLink="/login"
+                    routerLinkActive="active">
                         <span class="material-icons">person</span>
                         Login
                     </a>
@@ -51,11 +53,12 @@
 </header>
 
 <messages />
-<loading />
+<loading [detectRoutingOngoing]="true" />
 <confirm-dialog />
 
 <main class="app-main">
     <!-- router-outlet goes here -->
+  <router-outlet />
 </main>
 
 <dev-toolbar />
