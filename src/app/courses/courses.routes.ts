@@ -32,6 +32,13 @@ export const coursesRoutes: Routes = [
         resolve: {
           lessons: lessonsResolver
         }
+      },
+      {
+        path: 'lessons/:lessonSeqNo',
+        loadComponent: () => import('./lesson/lesson-detail.component').then(m => m.LessonDetailComponent),
+        resolve: {
+          lesson: lessonDetailResolver
+        }
       }
     ]
   }

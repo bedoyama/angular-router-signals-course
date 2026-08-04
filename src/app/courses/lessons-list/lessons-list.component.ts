@@ -7,7 +7,9 @@ import {LessonProgressService} from '../services/lesson-progress.service';
     selector: 'lessons-list',
     templateUrl: './lessons-list.component.html',
     styleUrls: ['./lessons-list.component.css'],
-    imports: [],
+  imports: [
+    RouterLink
+  ],
 })
 export class LessonsListComponent implements OnDestroy {
     readonly lessons = input<LessonSummary[]>([]);

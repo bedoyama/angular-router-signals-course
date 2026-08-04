@@ -9,7 +9,7 @@ import {VideoPlaceholderComponent} from '../../shared/video-placeholder/video-pl
     selector: 'lesson',
     templateUrl: './lesson-detail.component.html',
     styleUrls: ['./lesson-detail.component.css'],
-    imports: [VideoPlaceholderComponent],
+  imports: [VideoPlaceholderComponent, RouterLink],
 })
 export class LessonDetailComponent implements OnDestroy {
     private readonly title = inject(Title);

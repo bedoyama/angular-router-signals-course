@@ -1,35 +1,37 @@
 <div class="lessons-container">
-    <div class="section-heading">
-        <span class="heading-accent"></span>
-        <h2>Course Lessons</h2>
-    </div>
+  <div class="section-heading">
+    <span class="heading-accent"></span>
+    <h2>Course Lessons</h2>
+  </div>
 
-    @if (lessons().length) {
-        <div class="lessons-table-wrap">
-            <table class="lessons-table">
-                <thead>
-                    <tr>
-                        <th class="col-seq">#</th>
-                        <th class="col-desc">Lesson</th>
-                        <th class="col-dur">Duration</th>
-                        <th class="col-done"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (lesson of lessons(); track lesson.seqNo) {
-                        <tr class="lesson-row" [class.is-done]="progress.isVisited(lesson.seqNo)">
-                            <td class="col-seq">{{ lesson.seqNo }}</td>
-                            <td class="col-desc">{{ lesson.description }}</td>
-                            <td class="col-dur">{{ lesson.duration }}</td>
-                            <td class="col-done" (click)="$event.stopPropagation(); progress.toggleVisited(lesson.seqNo)">
-                                <span class="material-icons done-icon" [class.visited]="progress.isVisited(lesson.seqNo)">
+  @if (lessons().length) {
+    <div class="lessons-table-wrap">
+      <table class="lessons-table">
+        <thead>
+        <tr>
+          <th class="col-seq">#</th>
+          <th class="col-desc">Lesson</th>
+          <th class="col-dur">Duration</th>
+          <th class="col-done"></th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (lesson of lessons(); track lesson.seqNo) {
+            <tr class="lesson-row" [class.is-done]="progress.isVisited(lesson.seqNo)"
+                [routerLink]="['lessons', lesson.seqNo]">
+              <td class="col-seq">{{ lesson.seqNo }}</td>
+              <td class="col-desc">{{ lesson.description }}</td>
+              <td class="col-dur">{{ lesson.duration }}</td>
+              <td class="col-done" (click)="$event.stopPropagation(); progress.toggleVisited(lesson.seqNo)">
+                                <span class="material-icons done-icon"
+                                      [class.visited]="progress.isVisited(lesson.seqNo)">
                                     {{ progress.isVisited(lesson.seqNo) ? 'check_circle' : 'radio_button_unchecked' }}
                                 </span>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
 </div>
