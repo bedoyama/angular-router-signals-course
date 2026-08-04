@@ -2,12 +2,14 @@ import {Service, inject, signal, computed} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
 import {User} from '../model/user';
+import {Router} from "@angular/router";
 
 const AUTH_DATA = 'auth_data';
 
 @Service()
 export class AuthService {
     private http = inject(HttpClient);
+    private router: Router = inject(Router);
 
     private readonly _user = signal<User | null>(null);
 
@@ -30,8 +32,9 @@ export class AuthService {
         localStorage.setItem(AUTH_DATA, JSON.stringify(user));
     }
 
-    logout() {
+    async logout() {
         this._user.set(null);
         localStorage.removeItem(AUTH_DATA);
+        await this.router.navigateByUrl('/login');
     }
 }

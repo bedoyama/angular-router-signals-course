@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {authGuardChild} from '../services/auth.guard';
+import {authGuard, authGuardChild} from '../services/auth.guard';
 import {canMatchAuth} from '../services/can-load-auth.guard';
 import {featureFlagGuard} from '../services/feature-flag.guard';
 import {courseResolver} from './services/course.resolver';
@@ -15,6 +15,7 @@ export const coursesRoutes: Routes = [
   {
     path: 'edit-course/:courseUrl',
     loadComponent: () => import('./course-edit/course-edit.component').then(m => m.CourseEditComponent),
+    canActivate: [authGuard],
     resolve: {
       course: courseResolver
     }
@@ -22,6 +23,8 @@ export const coursesRoutes: Routes = [
   {
     path: ':courseUrl',
     loadComponent: () => import('./course/course.component').then(m => m.CourseComponent),
+    canActivate: [authGuard],
+    canActivateChild: [authGuardChild],
     resolve: {
       course: courseResolver
     },

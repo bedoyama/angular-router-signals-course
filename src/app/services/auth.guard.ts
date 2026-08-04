@@ -1,6 +1,13 @@
 import {inject} from '@angular/core';
-import {CanActivateFn, CanActivateChildFn, RedirectCommand, Router} from '@angular/router';
+import {CanActivateFn, CanActivateChildFn, RedirectCommand, Router, Routes} from '@angular/router';
 import {AuthService} from './auth.service';
 
-export const authGuard: CanActivateFn = () => true;
-export const authGuardChild: CanActivateChildFn = () => true;
+const checkAuthenticated = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  if (auth.isLoggedIn()) return true;
+  return router.parseUrl('/login');
+}
+
+export const authGuard: CanActivateFn = () => checkAuthenticated();
+export const authGuardChild: CanActivateChildFn = () => checkAuthenticated();
